@@ -1,0 +1,18 @@
+
+        Just use...
+
+      an EBNF-like grammar compiler!
+
+      LALR, Packrat, PEG, ...
+
+      - it's ackademick!
+      - deceptively "easy"
+      - originally designed for NLP
+
+      optimized for:
+      - arbitrary post-hoc configurable infixity!
+
+      not optimized for:
+      - error messages
+
+

@@ -1,0 +1,91 @@
+zoom id: 353673169
+
+Parsing From Scratch with Skeletons
+
+Ever been frustrated by complicated parsing tools that somehow still manage to have terrible error reporting for your users? In this talk I'll outline a modern parsing technique using "skeleton trees" that improves the UX of parsing errors by delaying decision-making as long as possible.
+
+
+* Problem Statement
+  - goal: design and parse a syntax for an industry product
+    * constraints:
+      + limited resources
+      + non-programmer users
+    * freedoms:
+      + choice of syntax design (no need to parse C++ f. ex)
+  - why? cf clojure/west talk
+
+AGENDA
+  - The Solved Problem, and its solutions
+  - The Compiler Pipeline, and its patterns
+  - The Skeletons, perhaps in trees
+
+  - "Parsing is a solved problem"
+  - "Parsing is the act of taking a stream of characters and deducing if
+     and how they conform to an underlying grammar"
+  - example
+  - that's all well and good for academia but for industry,
+    == PARSING IS UX ==
+
+  THE OPTIONS, AS THEY ARE PRESENTED
+  - EBNF
+    - deceptively "easy"
+    - originally designed for NLP, particularly english, so lots of infixity
+    - real computer languages almost never fully specify with ebnf, usually
+      ebnf + ~mysterious pile of hacks~
+    - ~not optimized for error messages~
+  - Lisp
+    - *really* constrains your syntax design
+    - bad UX if users don't have blessed tooling set up (recall: non-programmer users)
+
+  Parsing is the act of taking a stream of characters and either:
+    * deducing how it conforms to an underlying grammar
+    * providing guides for a user to correct mistakes
+
+  a good goal: the computer understands the text in a similar way to a human
+
+* Compiler Architecture / Patterns
+  - compiler code is essentially linear
+    User Input -> *MAGIC* -> Code Runs
+
+  - ... except the code doesn't *always* run, right
+
+    User Input -> *MAGIC* -> Code Runs (+ guarantees)
+                        \
+                         -> Error
+
+
+    Text -> AST (+ guaranteed valid syntax) -> Code Runs
+         \
+          -> Parse Error
+
+    Text -> AST -> Artifact (+ symbols resolve) -> Code Runs
+                \
+                 -> Compile Error
+
+    Text -> AST -> AST (+ well-typed) -> Artifact -> Code Runs
+                \
+                 -> Type Error
+
+    Text -> AST
+         \
+          -> Parse Error
+
+    Text -> Tokens (+ valid tokens) -> AST
+         \
+          -> Lex Error
+
+    Text -> Tokens -> Skeleton (+ well-nested) -> AST
+                   \
+                    -> Nesting Error
+
+    => Skeletons handle the recursion of parsing in a separate step <=
+
+    related to the layered way a human would process text:
+      * symbols
+      * nesting
+      * meaning
+
+* Let's Make Skeletons
+
+
+

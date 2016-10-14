@@ -1,0 +1,18 @@
+
+        Just use...
+
+      (Lisp)
+
+      Abandon infixity!
+
+      - really easy to parse by hand
+      - constrains syntax design
+      - bad UX if users don't have blessed
+        tooling set up
+        (recall: non-programmer users)
+      - without a good deal of effort, often
+        simply pushes parse errors
+        to runtime ("malformed form ...")
+
+
+

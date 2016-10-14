@@ -1,0 +1,18 @@
+
+                     TAKEAWAYS
+
+        - skeleton trees are not that hard!
+        - parsing is not that hard if you
+          limit infixity
+        - error messages are *really important*
+        - your parser is your UX
+        - pipeline thinking for compilers
+        - be skeptical of frameworks
+
+   _     -----------------------------
+ (n n)  | skeleton trees are cool and |
+ (+++)/ | now you know a cool thing   |
+   H     =============================
+
+              search term: "dexprs"
+
